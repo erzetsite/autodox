@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #fafafa;
+    --foreground: #111827;
+    --card: #ffffff;
+    --card-foreground: #111827;
+  }
+
+  .dark {
+    --background: #111827;
+    --foreground: #fafafa;
+    --card: #1f2937;
+    --card-foreground: #fafafa;
+  }
+
+  body {
+    @apply bg-[--background] text-[--foreground] font-sans;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

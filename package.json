@@ -1,0 +1,17 @@
+{
+  "name": "autodox-v2",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:worker\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:worker": "wrangler dev",
+    "build:frontend": "cd frontend && npm run build",
+    "deploy:worker": "wrangler deploy",
+    "deploy:pages": "wrangler pages deploy frontend/dist --project-name=autodox-v2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wrangler": "^3.65.1"
+  }
+}
