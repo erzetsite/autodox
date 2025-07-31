@@ -25,30 +25,28 @@ export default function UploadBox() {
 
   const handleUpload = async () => {
     if (!state.file) return
-
     setState({ ...state, loading: true, error: null })
-    
+
     const formData = new FormData()
     formData.append('file', state.file)
 
     try {
-      const response = await fetch('https://api.autodox.rzsite.my.id/format', {
+      const res = await fetch('https://api.autodox.rzsite.my.id/format', {
         method: 'POST',
         body: formData,
       })
+      if (!res.ok) throw new Error('Upload failed')
 
-      if (!response.ok) throw new Error('Upload failed')
-
-      const blob = await response.blob()
-      const url = window.URL.createObjectURL(blob)
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
       a.download = 'formatted_autodox.docx'
       a.click()
-      window.URL.revokeObjectURL(url)
-      
+      URL.revokeObjectURL(url)
+
       setState({ file: null, loading: false, error: null })
-    } catch (error) {
+    } catch {
       setState({ ...state, loading: false, error: 'Failed to process document' })
     }
   }
@@ -62,12 +60,7 @@ export default function UploadBox() {
       </div>
 
       <label className="block w-full">
-        <input
-          type="file"
-          accept=".docx"
-          onChange={handleFileChange}
-          className="hidden"
-        />
+        <input type="file" accept=".docx" onChange={handleFileChange} className="hidden" />
         <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-12 p-6 text-center cursor-pointer hover:border-accent-500 transition-colors">
           {state.file ? (
             <div className="flex items-center justify-center space-x-2">
@@ -80,9 +73,7 @@ export default function UploadBox() {
         </div>
       </label>
 
-      {state.error && (
-        <p className="text-red-500 text-sm mt-2">{state.error}</p>
-      )}
+      {state.error && <p className="text-red-500 text-sm mt-2">{state.error}</p>}
 
       <button
         onClick={handleUpload}
