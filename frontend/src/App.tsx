@@ -1,4 +1,3 @@
-import React from 'react'
 import UploadBox from './components/UploadBox'
 
 function App() {
