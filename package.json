@@ -1,17 +1,16 @@
+// ~/autodox/package.json  (root)
 {
-  "name": "autodox-v2",
-  "version": "2.0.0",
+  "name": "autodox-worker",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:worker\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:worker": "wrangler dev",
-    "build:frontend": "cd frontend && npm run build",
-    "deploy:worker": "wrangler deploy",
-    "deploy:pages": "wrangler pages deploy frontend/dist --project-name=autodox-v2"
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "docx": "^8.5.0",
+    "mammoth": "^1.7.2",
+    "@google/generative-ai": "^0.21.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "wrangler": "^3.65.1"
+    "wrangler": "^3.114.0"
   }
 }
