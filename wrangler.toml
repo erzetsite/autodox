@@ -1,6 +1,8 @@
 name = "autodox-api"
 main = "functions/api/format.ts"
 compatibility_date = "2025-07-31"
+compatibility_flags = ["nodejs_compat"]
+
 
 [env.production]
 route = "api.autodox.rzsite.my.id/*"
